@@ -10,7 +10,7 @@ import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 
-@Table(name = "Tweets")
+@Table(name = "Tweet")
 public class Tweet extends Model {
   // Define database columns and associated fields
   @Column(name = "userId")
@@ -22,8 +22,8 @@ public class Tweet extends Model {
   @Column(name = "body")
   private String body;
   
-  @Column(name = "User")
-  public User user;
+  @Column(name = "user")
+  private User user;
 
   // Make sure to always define this constructor with no arguments
   public Tweet() {
@@ -39,6 +39,14 @@ public class Tweet extends Model {
      this.userHandle = object.getString("user_username");
      this.timestamp = object.getString("timestamp");
      this.body = object.getString("body");
+     
+     // add user to db if doesn't exist
+//     if (User.getFromId(this.userId) == null) {
+//    	 User u = new User(object.getJSONObject("user"));
+//    	 u.save();
+//     }
+     this.user = new User(object.getJSONObject("user"));
+     
    } catch (JSONException e) {
      e.printStackTrace();
    }
@@ -63,6 +71,10 @@ public class Tweet extends Model {
 
    return tweets;
  }
+ 
+// public User getUser() {
+//	 return User.getFromId(this.userId);
+// }
  
  public User getUser() {
 	 return user;

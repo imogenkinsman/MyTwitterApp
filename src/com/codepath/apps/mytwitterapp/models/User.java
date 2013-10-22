@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
+import com.activeandroid.query.Select;
 
 @Table(name = "Users")
 public class User extends Model {
@@ -30,7 +31,7 @@ public class User extends Model {
 		super();
 		
 		try {
-			this.userId = object.getString("user_id");
+			this.userId = object.getString("id");
 			this.profileImgUrl = object.getString("profile_image_url");
 			this.name = object.getString("name");
 			this.screenName = object.getString("screen_name");
@@ -38,6 +39,10 @@ public class User extends Model {
 			e.printStackTrace();
 		}
 	}
+	
+//	public static User fromJson(JSONObject json) {
+//		
+//	}
 	
 	public List<Tweet> tweets() {
 		return getMany(Tweet.class, "User");
@@ -53,6 +58,10 @@ public class User extends Model {
 	
 	public String getScreenName() {
 		return screenName;
+	}
+
+	public static User getFromId(String userId) {
+		return new Select().from(User.class).where("userId = ?", userId).executeSingle();
 	}
 	
 }
