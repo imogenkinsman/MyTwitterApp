@@ -1,51 +1,32 @@
 package com.codepath.apps.mytwitterapp.models;
 
-import java.util.List;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.activeandroid.Model;
-import com.activeandroid.annotation.Column;
-import com.activeandroid.annotation.Table;
-import com.activeandroid.query.Select;
-
-@Table(name = "Users")
-public class User extends Model {
-	// Define database columns and associated fields
-	@Column(name = "userId")
-	private String userId;
-	@Column(name = "name")
+// https://dev.twitter.com/docs/api/1.1/get/users/show
+public class User {
+	private long id;
 	private String name;
-	@Column(name = "profileImgUrl")
 	private String profileImgUrl;
-	@Column(name = "screenName")
 	private String screenName;
 	
 	public User() {
 		super();
 	}
 	
-	// https://dev.twitter.com/docs/api/1.1/get/users/show
-	public User(JSONObject object) {
-		super();
+	public static User fromJson(JSONObject object) {
+		User user = new User();
 		
 		try {
-			this.userId = object.getString("id");
-			this.profileImgUrl = object.getString("profile_image_url");
-			this.name = object.getString("name");
-			this.screenName = object.getString("screen_name");
+			user.id = object.getLong("id");
+			user.profileImgUrl = object.getString("profile_image_url");
+			user.name = object.getString("name");
+			user.screenName = object.getString("screen_name");
 		} catch (JSONException e) {
 			e.printStackTrace();
+			return null;
 		}
-	}
-	
-//	public static User fromJson(JSONObject json) {
-//		
-//	}
-	
-	public List<Tweet> tweets() {
-		return getMany(Tweet.class, "User");
+		return user;
 	}
 	
 	public String getProfileImageUrl() {
@@ -59,9 +40,9 @@ public class User extends Model {
 	public String getScreenName() {
 		return screenName;
 	}
-
-	public static User getFromId(String userId) {
-		return new Select().from(User.class).where("userId = ?", userId).executeSingle();
+	
+	public Long getId() {
+		return id;
 	}
 	
 }

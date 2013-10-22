@@ -13,17 +13,14 @@ import com.activeandroid.annotation.Table;
 @Table(name = "Tweet")
 public class Tweet extends Model {
   // Define database columns and associated fields
-  @Column(name = "userId")
-  private String userId;
-  @Column(name = "userHandle")
-  private String userHandle;
+  @Column(name = "user")
+  private User user;
+  @Column(name = "tweetId")
+  private long tweetId;
   @Column(name = "timestamp")
   private String timestamp;
   @Column(name = "body")
   private String body;
-  
-  @Column(name = "user")
-  private User user;
 
   // Make sure to always define this constructor with no arguments
   public Tweet() {
@@ -31,25 +28,26 @@ public class Tweet extends Model {
   }
   
 //Add a constructor that creates an object from the JSON response
- public Tweet(JSONObject object){
-   super();
+ public static Tweet fromJson(JSONObject object){
+	 Tweet tweet = new Tweet();
 
    try {
-     this.userId = object.getString("user_id");
-     this.userHandle = object.getString("user_username");
-     this.timestamp = object.getString("timestamp");
-     this.body = object.getString("body");
+     tweet.tweetId = object.getLong("id");
+     tweet.timestamp = object.getString("created_at");
+     tweet.body = object.getString("text");
+     tweet.user = User.fromJson(object.getJSONObject("user"));
      
      // add user to db if doesn't exist
 //     if (User.getFromId(this.userId) == null) {
 //    	 User u = new User(object.getJSONObject("user"));
 //    	 u.save();
 //     }
-     this.user = new User(object.getJSONObject("user"));
      
    } catch (JSONException e) {
      e.printStackTrace();
+     return null;
    }
+   return tweet;
  }
 
  public static ArrayList<Tweet> fromJson(JSONArray jsonArray) {
@@ -64,7 +62,7 @@ public class Tweet extends Model {
            continue;
        }
 
-       Tweet tweet = new Tweet(tweetJson);
+       Tweet tweet = Tweet.fromJson(tweetJson);
        tweet.save();
        tweets.add(tweet);
    }

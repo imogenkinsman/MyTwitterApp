@@ -30,10 +30,10 @@ public class TweetsAdapter extends ArrayAdapter<Tweet> {
 		
 		Tweet tweet = getItem(position);
 		
-		ImageView imageView = (ImageView) view.findViewById(R.id.ivProfile);
+		ImageView ivProfile = (ImageView) view.findViewById(R.id.ivProfile);
 		//Log.d ("DEBUG", tweet.getBody());
 		//Log.d ("DEBUG", tweet.getUser().toString());
-		ImageLoader.getInstance().displayImage(tweet.getUser().getProfileImageUrl(), imageView);
+		ImageLoader.getInstance().displayImage(tweet.getUser().getProfileImageUrl(), ivProfile);
 		
 		TextView nameView = (TextView) view.findViewById(R.id.tvName);
 		String formattedName = "<b>" + tweet.getUser().getName() + "</b>" + " <small><font color='#777777'>@" +
