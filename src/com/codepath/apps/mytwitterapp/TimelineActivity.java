@@ -7,7 +7,6 @@ import org.json.JSONArray;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -21,22 +20,18 @@ public class TimelineActivity extends Activity {
 	private static final int REQUEST_CODE = 0;
 	TweetsAdapter twtAdapter;
 	ListView lvTweets;
+	ArrayList<Tweet> tweets;
 	
-	long minId;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_timeline);
 		setupViews();
-		
-		minId = Long.MAX_VALUE;
-		
+				
 		MyTwitterApp.getRestClient().getHomeTimeline(new JsonHttpResponseHandler() {
 			@Override
 			public void onSuccess(JSONArray jsonTweets) {
-				ArrayList<Tweet> tweets = Tweet.fromJson(jsonTweets);
-				setMinId(tweets);
+				tweets = Tweet.fromJson(jsonTweets);
 					
 				twtAdapter = new TweetsAdapter(getBaseContext(), tweets);
 				lvTweets.setAdapter(twtAdapter);
@@ -46,26 +41,14 @@ public class TimelineActivity extends Activity {
 		lvTweets.setOnScrollListener(new EndlessScrollListener() {
 			@Override
 			public void onLoadMore(int page, int totalItemsCount) {
-				MyTwitterApp.getRestClient().getHomeTimeLine(minId, new JsonHttpResponseHandler() {
+				MyTwitterApp.getRestClient().getOldTimeLine(tweets.get(totalItemsCount-1).getTweetId(), new JsonHttpResponseHandler() {
 					@Override
-					public void onSuccess(JSONArray jsonTweets) {
-						ArrayList<Tweet> tweets = Tweet.fromJson(jsonTweets);
-						setMinId(tweets);
-						
-						twtAdapter.addAll(tweets);
+					public void onSuccess(JSONArray jsonTweets) {	
+						twtAdapter.addAll(Tweet.fromJson(jsonTweets));
 					}
 				});
 			}
 		});
-	}
-	
-	private void setMinId(ArrayList<Tweet> tweets){
-		for (Tweet t : tweets) {
-			if (t.getId() < minId) {
-				Log.d("DEBUG", t.getId().toString());
-				minId = t.getId();
-			}
-		}
 	}
 
 	@Override

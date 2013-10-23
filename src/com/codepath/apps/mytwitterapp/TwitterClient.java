@@ -41,13 +41,12 @@ public class TwitterClient extends OAuthBaseClient {
     	client.get(url, params, handler);
     }
     
-    // why doesn't java have optional arguments :(
-    public void getHomeTimeLine(long maxId, AsyncHttpResponseHandler handler) {
+    public void getOldTimeLine(long maxId, AsyncHttpResponseHandler handler) {
     	String url = getApiUrl("statuses/home_timeline.json");
     	RequestParams params = new RequestParams();
     	params.put("count", "25");
     	params.put("include_rts", "1");
-    	params.put("max_id", "100");
+    	params.put("max_id", Long.toString(maxId - 1));
     	client.get(url, params, handler);
     }
     

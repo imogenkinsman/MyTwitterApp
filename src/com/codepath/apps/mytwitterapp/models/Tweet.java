@@ -90,13 +90,8 @@ public class Tweet extends Model implements Serializable {
 	 return timestamp;
  }
  
- // is there a min function for activeandroid?
-// public static long getMinId() {
-////	 Tweet minTweet = new Select().from(Tweet.class).orderBy("tweetId ASC").limit("1").executeSingle();
-////	 return minTweet.getId();
-//	 Tweet minTweet = new Select().from(Tweet.class).where("tweetId = (select min(tweetId) from Tweet)").executeSingle();
-//	 Log.d("DEBUG", minTweet.getId().toString());
-//	 return minTweet.getId();
-// }
+ public long getTweetId() {
+	 return tweetId;
+ }
  
 }
