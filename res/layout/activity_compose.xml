@@ -8,4 +8,46 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ComposeActivity" >
 
+    <RelativeLayout
+        android:id="@+id/rlButtonMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="#F9F9F9" >
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="cancel"
+            android:text="@string/cancel" />
+
+        <Button
+            android:id="@+id/btnTweet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:onClick="tweet"
+            android:text="@string/tweet"
+            android:textColor="#FFFFFF" />
+
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/etTweet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/rlButtonMenu"
+        android:layout_alignRight="@+id/rlButtonMenu"
+        android:layout_below="@+id/rlButtonMenu"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:inputType="textMultiLine" >
+
+        <requestFocus />
+    </EditText>
+
 </RelativeLayout>

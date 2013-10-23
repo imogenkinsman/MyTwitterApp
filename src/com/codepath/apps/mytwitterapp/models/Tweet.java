@@ -1,5 +1,6 @@
 package com.codepath.apps.mytwitterapp.models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
@@ -11,21 +12,24 @@ import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 
 @Table(name = "Tweet")
-public class Tweet extends Model {
-  // Define database columns and associated fields
-  @Column(name = "user")
-  private User user;
-  @Column(name = "tweetId")
-  private long tweetId;
-  @Column(name = "timestamp")
-  private String timestamp;
-  @Column(name = "body")
-  private String body;
+public class Tweet extends Model implements Serializable {
+	
+	private static final long serialVersionUID = 108450517750950620L;
+	
+// Define database columns and associated fields
+	@Column(name = "user")
+	private User user;
+	@Column(name = "tweetId")
+	private long tweetId;
+	@Column(name = "timestamp")
+	private String timestamp;
+	@Column(name = "body")
+	private String body;
 
   // Make sure to always define this constructor with no arguments
-  public Tweet() {
-    super();
-  }
+	public Tweet() {
+		super();
+	}
   
 //Add a constructor that creates an object from the JSON response
  public static Tweet fromJson(JSONObject object){
