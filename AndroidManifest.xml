@@ -16,7 +16,6 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:debuggable="true"
         android:theme="@style/AppTheme" >
         <meta-data
             android:name="AA_DB_NAME"
@@ -47,6 +46,10 @@
         <activity
             android:name="com.codepath.apps.mytwitterapp.TimelineActivity"
             android:label="@string/title_activity_timeline" >
+        </activity>
+        <activity
+            android:name="com.codepath.apps.mytwitterapp.ComposeActivity"
+            android:label="@string/title_activity_compose" >
         </activity>
     </application>
 
