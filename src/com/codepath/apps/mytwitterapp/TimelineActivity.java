@@ -18,6 +18,7 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 public class TimelineActivity extends Activity {
 
 	private static final int REQUEST_CODE = 0;
+	TweetsAdapter twtAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +31,8 @@ public class TimelineActivity extends Activity {
 				ArrayList<Tweet> tweets = Tweet.fromJson(jsonTweets);
 				
 				ListView lvTweets = (ListView) findViewById(R.id.lvTweets);
-				TweetsAdapter adapter = new TweetsAdapter(getBaseContext(), tweets);
-				lvTweets.setAdapter(adapter);
+				twtAdapter = new TweetsAdapter(getBaseContext(), tweets);
+				lvTweets.setAdapter(twtAdapter);
 				//Log.d("DEBUG", jsonTweets.toString());
 			}
 		});
@@ -51,8 +52,9 @@ public class TimelineActivity extends Activity {
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
-			// add feed refresh
+		if (requestCode == REQUEST_CODE && resultCode == 1) {
+			Tweet newTweet = (Tweet) data.getSerializableExtra("tweet");
+			twtAdapter.insert(newTweet, 0);
 			Toast.makeText(this, "Tweet Posted", Toast.LENGTH_SHORT).show();
 		}
 	}
