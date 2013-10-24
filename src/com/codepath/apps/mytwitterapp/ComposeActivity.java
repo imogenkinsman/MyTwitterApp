@@ -1,5 +1,6 @@
 package com.codepath.apps.mytwitterapp;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
@@ -12,6 +13,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.codepath.apps.mytwitterapp.models.Tweet;
@@ -23,12 +25,13 @@ public class ComposeActivity extends Activity {
 	
 	EditText etTweet;
 	Button btnTweet;
+	TextView tvTwitterHandle;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_compose);
-		setupViews();
+		setup();
 		addListeners();
 	}
 
@@ -39,10 +42,22 @@ public class ComposeActivity extends Activity {
 		return true;
 	}
 	
-	public void setupViews() {
+	public void setup() {
 		etTweet = (EditText) findViewById(R.id.etTweet);
 		btnTweet = (Button) findViewById(R.id.btnTweet);
 		btnTweet.setEnabled(false);
+		tvTwitterHandle = (TextView) findViewById(R.id.tvUser);
+		
+		MyTwitterApp.getRestClient().getUserInfo(new JsonHttpResponseHandler() {
+			@Override
+			public void onSuccess(JSONObject object) {
+				try {
+					tvTwitterHandle.setText("@" + object.getString("screen_name"));
+				} catch (JSONException e) {
+					e.printStackTrace();
+			    }
+			}
+		});
 	}
 	
 	public void addListeners() {

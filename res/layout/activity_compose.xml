@@ -14,8 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:background="#F9F9F9" >
+        android:layout_alignParentTop="true" >
 
         <Button
             android:id="@+id/btnCancel"
@@ -31,23 +30,51 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:onClick="tweet"
-            android:text="@string/tweet"
-            android:textColor="#FFFFFF" />
-
+            android:text="@string/tweet" />
     </RelativeLayout>
 
-    <EditText
-        android:id="@+id/etTweet"
+    <RelativeLayout
+        android:id="@+id/rlBody"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/rlButtonMenu"
+        android:layout_marginTop="70dp"
+        android:background="#ffffff" >
+
+        <EditText
+            android:id="@+id/etTweet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:background="#ffffff"
+            android:ems="10"
+            android:inputType="textMultiLine"
+            android:padding="10dp" >
+
+            <requestFocus />
+        </EditText>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlUserInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/rlButtonMenu"
         android:layout_alignRight="@+id/rlButtonMenu"
         android:layout_below="@+id/rlButtonMenu"
-        android:layout_marginTop="30dp"
-        android:ems="10"
-        android:inputType="textMultiLine" >
+        android:layout_marginTop="10dp" >
 
-        <requestFocus />
-    </EditText>
+        <TextView
+            android:id="@+id/tvUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
 
 </RelativeLayout>

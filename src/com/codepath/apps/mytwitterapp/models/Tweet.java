@@ -7,8 +7,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.util.Log;
-
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
@@ -42,9 +40,7 @@ public class Tweet extends Model implements Serializable {
      tweet.timestamp = object.getString("created_at");
      tweet.body = object.getString("text");
      tweet.user = User.fromJson(object.getJSONObject("user"));
-     
-     Log.d("DEBUG", Long.toString(tweet.tweetId));
-     
+          
      // add user to db if doesn't exist
 //     if (User.getFromId(this.userId) == null) {
 //    	 User u = new User(object.getJSONObject("user"));
