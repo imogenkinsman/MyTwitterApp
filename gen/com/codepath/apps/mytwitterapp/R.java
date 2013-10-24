@@ -29,15 +29,16 @@ public final class R {
         public static final int btnCancel=0x7f080001;
         public static final int btnTweet=0x7f080002;
         public static final int etTweet=0x7f080004;
-        public static final int item1=0x7f08000c;
-        public static final int ivProfile=0x7f080009;
+        public static final int item1=0x7f08000d;
+        public static final int ivProfile=0x7f08000a;
         public static final int ivUserProfile=0x7f080007;
-        public static final int lvTweets=0x7f080008;
+        public static final int lvTweets=0x7f080009;
         public static final int rlBody=0x7f080003;
         public static final int rlButtonMenu=0x7f080000;
         public static final int rlUserInfo=0x7f080005;
-        public static final int tvBody=0x7f08000b;
-        public static final int tvName=0x7f08000a;
+        public static final int tvBody=0x7f08000c;
+        public static final int tvChars=0x7f080008;
+        public static final int tvName=0x7f08000b;
         public static final int tvUser=0x7f080006;
     }
     public static final class layout {
@@ -56,6 +57,8 @@ public final class R {
         public static final int action_settings=0x7f050001;
         public static final int app_name=0x7f050000;
         public static final int cancel=0x7f050007;
+        public static final int charsRemaining=0x7f05000a;
+        public static final int chars_remaining=0x7f050009;
         public static final int compose=0x7f050005;
         public static final int login_label=0x7f050002;
         public static final int profile_image=0x7f050004;

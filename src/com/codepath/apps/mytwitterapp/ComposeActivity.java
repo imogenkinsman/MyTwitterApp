@@ -29,6 +29,7 @@ public class ComposeActivity extends Activity {
 	Button btnTweet;
 	TextView tvTwitterHandle;
 	ImageView ivUserProfile;
+	TextView tvChars;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +52,7 @@ public class ComposeActivity extends Activity {
 		btnTweet.setEnabled(false);
 		tvTwitterHandle = (TextView) findViewById(R.id.tvUser);
 		ivUserProfile = (ImageView) findViewById(R.id.ivUserProfile);
-		
+		tvChars = (TextView) findViewById(R.id.tvChars);
 		
 		MyTwitterApp.getRestClient().getUserInfo(new JsonHttpResponseHandler() {
 			@Override
@@ -82,11 +83,12 @@ public class ComposeActivity extends Activity {
 			@Override
 			public void onTextChanged(CharSequence s, int start, int before,
 					int count) {
-				if (s.length() == 0){
+				if (s.length() == 0 || s.length() > 140) {
 					btnTweet.setEnabled(false);
 				} else {
 					btnTweet.setEnabled(true);
 				}
+				tvChars.setText(Integer.toString(140 - s.length()));
 			}
 		});
 	}
