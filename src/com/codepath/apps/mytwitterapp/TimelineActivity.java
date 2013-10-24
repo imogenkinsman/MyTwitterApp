@@ -3,10 +3,12 @@ package com.codepath.apps.mytwitterapp;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -35,6 +37,12 @@ public class TimelineActivity extends Activity {
 					
 				twtAdapter = new TweetsAdapter(getBaseContext(), tweets);
 				lvTweets.setAdapter(twtAdapter);
+			}
+			
+			@Override
+			public void onFailure(Throwable e, JSONObject error) {
+				Log.e("ERROR", e.toString());
+				Toast.makeText(TimelineActivity.this, "Unable To Access Tweets", Toast.LENGTH_SHORT).show();
 			}
 		});
 		

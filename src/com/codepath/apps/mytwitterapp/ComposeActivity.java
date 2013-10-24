@@ -13,11 +13,13 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.codepath.apps.mytwitterapp.models.Tweet;
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class ComposeActivity extends Activity {
 	
@@ -26,6 +28,7 @@ public class ComposeActivity extends Activity {
 	EditText etTweet;
 	Button btnTweet;
 	TextView tvTwitterHandle;
+	ImageView ivUserProfile;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +50,15 @@ public class ComposeActivity extends Activity {
 		btnTweet = (Button) findViewById(R.id.btnTweet);
 		btnTweet.setEnabled(false);
 		tvTwitterHandle = (TextView) findViewById(R.id.tvUser);
+		ivUserProfile = (ImageView) findViewById(R.id.ivUserProfile);
+		
 		
 		MyTwitterApp.getRestClient().getUserInfo(new JsonHttpResponseHandler() {
 			@Override
 			public void onSuccess(JSONObject object) {
 				try {
 					tvTwitterHandle.setText("@" + object.getString("screen_name"));
+					ImageLoader.getInstance().displayImage(object.getString("profile_image_url"), ivUserProfile);
 				} catch (JSONException e) {
 					e.printStackTrace();
 			    }
