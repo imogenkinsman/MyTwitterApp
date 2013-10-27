@@ -1,5 +1,6 @@
-package com.codepath.apps.mytwitterapp;
+package com.codepath.mytwitterapp.activities;
 
+import java.security.acl.LastOwnerException;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
@@ -13,7 +14,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.codepath.apps.mytwitterapp.models.Tweet;
+import com.codepath.apps.mytwitterapp.R;
+import com.codepath.mytwitterapp.MyTwitterApp;
+import com.codepath.mytwitterapp.adapters.TweetsAdapter;
+import com.codepath.mytwitterapp.helpers.EndlessScrollListener;
+import com.codepath.mytwitterapp.models.Tweet;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import eu.erikw.PullToRefreshListView;
@@ -51,8 +56,7 @@ public class TimelineActivity extends Activity {
 		lvTweets.setOnScrollListener(new EndlessScrollListener() {
 			@Override
 			public void onLoadMore(int page, int totalItemsCount) {
-				// need to do totalItemsCount - 2 because the PullToRefresh adds another hidden item to the list
-				MyTwitterApp.getRestClient().getOldTimeLine(tweets.get(totalItemsCount-2).getTweetId(), new JsonHttpResponseHandler() {
+				MyTwitterApp.getRestClient().getOldTimeLine(tweets.get(tweets.size() - 1).getTweetId(), new JsonHttpResponseHandler() {
 					@Override
 					public void onSuccess(JSONArray jsonTweets) {	
 						twtAdapter.addAll(Tweet.fromJson(jsonTweets));

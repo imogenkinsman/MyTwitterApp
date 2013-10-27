@@ -1,4 +1,4 @@
-package com.codepath.apps.mytwitterapp;
+package com.codepath.mytwitterapp.activities;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,7 +17,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.codepath.apps.mytwitterapp.models.Tweet;
+import com.codepath.apps.mytwitterapp.R;
+import com.codepath.mytwitterapp.MyTwitterApp;
+import com.codepath.mytwitterapp.models.Tweet;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.nostra13.universalimageloader.core.ImageLoader;
 

@@ -1,4 +1,4 @@
-package com.codepath.apps.mytwitterapp;
+package com.codepath.mytwitterapp.adapters;
 
 import java.util.List;
 
@@ -11,7 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.codepath.apps.mytwitterapp.models.Tweet;
+import com.codepath.apps.mytwitterapp.R;
+import com.codepath.mytwitterapp.models.Tweet;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class TweetsAdapter extends ArrayAdapter<Tweet> {

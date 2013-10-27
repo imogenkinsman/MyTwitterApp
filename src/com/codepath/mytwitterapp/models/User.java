@@ -1,4 +1,4 @@
-package com.codepath.apps.mytwitterapp.models;
+package com.codepath.mytwitterapp.models;
 
 import java.io.Serializable;
 

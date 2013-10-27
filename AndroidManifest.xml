@@ -12,7 +12,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name="com.codepath.apps.mytwitterapp.MyTwitterApp"
+        android:name="com.codepath.mytwitterapp.MyTwitterApp"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -25,7 +25,7 @@
             android:value="1" />
 
         <activity
-            android:name="com.codepath.apps.mytwitterapp.LoginActivity"
+            android:name="com.codepath.mytwitterapp.activities.LoginActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,11 +44,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.codepath.apps.mytwitterapp.TimelineActivity"
+            android:name="com.codepath.mytwitterapp.activities.TimelineActivity"
             android:label="@string/title_activity_timeline" >
         </activity>
         <activity
-            android:name="com.codepath.apps.mytwitterapp.ComposeActivity"
+            android:name="com.codepath.mytwitterapp.activities.ComposeActivity"
             android:label="@string/title_activity_compose" >
         </activity>
     </application>
