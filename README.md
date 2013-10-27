@@ -1,7 +1,7 @@
 My Twitter App
 ==============
 
-A simple twitter app for android.
+A twitter app for android.
 
 Features:
 * OAuth integration
