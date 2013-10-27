@@ -1,6 +1,5 @@
 package com.codepath.mytwitterapp.activities;
 
-import java.security.acl.LastOwnerException;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
